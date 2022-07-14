@@ -1,20 +1,8 @@
 {
-  "db": [
+  "notes": [
     {
       "title": "Test Title",
       "text": "Test text"
-    },
-    {
-      "title": "Test2",
-      "text": "Text2"
-    },
-    {
-      "title": "To-Do",
-      "text": "Fix this function2"
-    },
-    {
-      "title": "To-Do",
-      "text": "sadkjlfads"
     }
   ]
 }

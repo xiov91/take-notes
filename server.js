@@ -13,19 +13,26 @@ app.use(express.json());
 
 // let noteArray = db;
 
-console.log(db);
-console.log(notes);
-
 function createNewNote(body, noteArray) {
     const note = body;
     noteArray.push(note);
     fs.writeFileSync(
         path.join(__dirname, './db/db.json'),
-        JSON.stringify({ db: noteArray }, null, 2)
+        JSON.stringify({ notes: noteArray }, null, 2)
     );
 
     return note;
 } 
+
+function validateNote(note) {
+    if (!notes.title || typeof note.title !== 'string') {
+        return false;
+    }
+    if (!notes.text || typeof notes.text !== 'string') {
+        return false;
+    }
+    return true;
+}
 
 // app.get to GET the info from the db.json
 app.get('/api/db', (req, res) => {
@@ -33,8 +40,12 @@ app.get('/api/db', (req, res) => {
 })
 
 app.post('/api/db', (req, res) => {
+    if (!validateNote(req.body)) {
+        res.status(400).send('No fields can be empty!');
+    } else {
     const note = createNewNote(req.body, notes);
     res.json(note);
+    }
 });
 
 // the On switch!
