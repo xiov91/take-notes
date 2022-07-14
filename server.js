@@ -10,6 +10,7 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 // parse incoming JSON data
 app.use(express.json());
+app.use(express.static('public'));
 
 // let noteArray = db;
 
@@ -24,7 +25,7 @@ function createNewNote(body, noteArray) {
     return note;
 } 
 
-function validateNote(note) {
+/* function validateNote(note) {
     if (!notes.title || typeof note.title !== 'string') {
         return false;
     }
@@ -32,21 +33,34 @@ function validateNote(note) {
         return false;
     }
     return true;
-}
+} */
 
 // app.get to GET the info from the db.json
 app.get('/api/db', (req, res) => {
     res.json(db);
 })
 
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/index.html'));
+});
+
+app.get('/notes', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/notes.html'));
+});
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/index.html'));
+});
+
 app.post('/api/db', (req, res) => {
-    if (!validateNote(req.body)) {
+    /* if (!validateNote(req.body)) {
         res.status(400).send('No fields can be empty!');
     } else {
+     */
     const note = createNewNote(req.body, notes);
     res.json(note);
     }
-});
+);
 
 // the On switch!
 app.listen(PORT, () => {
