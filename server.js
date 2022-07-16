@@ -1,66 +1,16 @@
 const express = require('express');
-const db = require('./db/db.json');
-const {notes} = require('./db/db.json');
-const fs = require('fs');
-const path = require('path');
-// Sets up the port, so we aren't hardcoded into just one?
+
 const PORT = process.env.PORT || 3001;
 const app = express();
-// parse incoming string or array data
+const apiRoutes = require('./routes/apiRoutes/noteRoutes');
+const htmlRoutes = require('./routes/apiRoutes');
+
 app.use(express.urlencoded({ extended: true }));
-// parse incoming JSON data
 app.use(express.json());
 app.use(express.static('public'));
 
-// let noteArray = db;
-
-function createNewNote(body, noteArray) {
-    const note = body;
-    noteArray.push(note);
-    fs.writeFileSync(
-        path.join(__dirname, './db/db.json'),
-        JSON.stringify({ notes: noteArray }, null, 2)
-    );
-
-    return note;
-} 
-
-/* function validateNote(note) {
-    if (!notes.title || typeof note.title !== 'string') {
-        return false;
-    }
-    if (!notes.text || typeof notes.text !== 'string') {
-        return false;
-    }
-    return true;
-} */
-
-// app.get to GET the info from the db.json
-app.get('/api/db', (req, res) => {
-    res.json(db);
-})
-
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, './public/index.html'));
-});
-
-app.get('/notes', (req, res) => {
-    res.sendFile(path.join(__dirname, './public/notes.html'));
-});
-
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, './public/index.html'));
-});
-
-app.post('/api/db', (req, res) => {
-    /* if (!validateNote(req.body)) {
-        res.status(400).send('No fields can be empty!');
-    } else {
-     */
-    const note = createNewNote(req.body, notes);
-    res.json(note);
-    }
-);
+app.use('/api', apiRoutes);
+app.use('/', htmlRoutes);
 
 // the On switch!
 app.listen(PORT, () => {
