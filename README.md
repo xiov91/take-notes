@@ -17,7 +17,7 @@
   
   ## Links
   * Repository: https://github.com/xiov91/take-notes
-  * Deployed: https://xiov91.github.io/take-notes/
+  * Deployed: https://vast-tundra-24866.herokuapp.com/
   * GitHub: xiov91
   * E-Mail: xiovacc@gmail.com
   
