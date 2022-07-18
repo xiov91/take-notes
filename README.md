@@ -1,22 +1,24 @@
-# take-notes
-
-GIVEN a note-taking application
-
-WHEN I open the Note Taker
-THEN I am presented with a landing page with a link to a notes page
-
-WHEN I click on the link to the notes page
-THEN I am presented with a page with existing notes listed in the left-hand column, plus empty fields to enter a new note title and the note’s text in the right-hand column
-
-WHEN I enter a new note title and the note’s text
-THEN a Save icon appears in the navigation at the top of the page
-
-WHEN I click on the Save icon
-THEN the new note I have entered is saved and appears in the left-hand column with the other existing notes
-
-WHEN I click on an existing note in the list in the left-hand column
-THEN that note appears in the right-hand column
-
-WHEN I click on the Write icon in the navigation at the top of the page
-THEN I am presented with empty fields to enter a new note title and the note’s text in the right-hand column
+# Take Note!
  
+  ## Description
+  Take Notes is an exercise in Express.js, creating server routes that can store and receive information in the form of written notes. The javascript functionality was pre-written, but everything server-side was made by me.
+  
+  ## Table of Contents
+  
+  * [Installation and Usage](#installationandusage)
+  * [Contributions](#contributions)
+  * [Links](#links)
+  
+  # Installation and Usage
+  1. Run 'NPM install' 2. Run 'NPM start' to boot up the server. 3. 'http://localhost:3001/' will access the landing page, then you can get started and create notes, saving them with the little icon in the corner.
+  
+  ## Contributions
+  There are functionality improvements that definitely need to be adjusted. The JavaScript doesn't seem to want to display the note array on the sidebar as it should, despite being set up to do so. Also, the JavaScript is set up for a delete button functionality, but that's not wired to the server yet.
+  
+  ## Links
+  * Repository: https://github.com/xiov91/take-notes
+  * Deployed: https://xiov91.github.io/take-notes/
+  * GitHub: xiov91
+  * E-Mail: xiovacc@gmail.com
+  
+    ![screenshot](screenshot.png)
