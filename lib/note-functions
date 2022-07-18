@@ -12,6 +12,4 @@ function createNewNote(body, noteArray) {
     return note;
 } 
 
-module.exports = {
-    createNewNote
-};
+module.exports = createNewNote;
